@@ -1,23 +1,456 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "20대 초반 자동차 보험료 비교 가이드",
+      "description": "20대 초반 운전자를 위한 자동차 보험료 평균 견적, 연령별 차이점, 할인 특약 활용법 및 저렴한 보험사 비교 정보를 제공하는 전문 가이드입니다.",
+      "serviceType": "Automobile Insurance",
+      "areaServed": {
+        "@type": "Country",
+        "name": "KR"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "종합 보험 비교 분석 센터"
+      },
+      "url": "https://도메인/early-20s-car-insurance-guide",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "2450"
+      },
+      "priceRange": "KRW (개인별 조건에 따른 변동)"
+    }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f6f9; 
+            color: #2c3e50; 
+            line-height: 1.8; 
+        }
+        header, section, footer { 
+            max-width: 1000px; 
+            margin: 30px auto; 
+            padding: 40px; 
+            background: #ffffff; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+        }
+        h1, h2, h3, h4 { 
+            color: #1e3a8a; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+        }
+        h1 { 
+            font-size: 2.4rem; 
+            text-align: center; 
+            padding-bottom: 15px; 
+            border-bottom: 3px solid #3b82f6; 
+        }
+        h2 { 
+            font-size: 1.8rem; 
+            border-bottom: 2px solid #e2e8f0; 
+            padding-bottom: 12px; 
+            margin-top: 40px; 
+        }
+        h3 { 
+            font-size: 1.4rem; 
+            color: #2563eb; 
+            border-left: 4px solid #2563eb; 
+            padding-left: 12px; 
+            margin-top: 30px; 
+        }
+        p, li, td, th, label, textarea { 
+            font-size: 1rem; 
+            color: #4b5563; 
+        }
+        ul, ol { 
+            padding-left: 20px; 
+            margin-bottom: 25px; 
+        }
+        ul li, ol li { 
+            margin-bottom: 10px; 
+        }
+        
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 30px 0; 
+            font-size: 0.95rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+        th, td { 
+            padding: 14px 16px; 
+            text-align: left; 
+            border-bottom: 1px solid #e2e8f0; 
+        }
+        th { 
+            background: #1e3a8a; 
+            color: #ffffff; 
+            font-weight: 600; 
+        }
+        tr:nth-child(even) { 
+            background: #f8fafc; 
+        }
+        tr:hover { 
+            background: #f1f5f9; 
+        }
+
+        a { 
+            color: #2563eb; 
+            text-decoration: none; 
+            transition: color 0.2s ease; 
+        }
+        a:hover { 
+            color: #1d4ed8; 
+            text-decoration: underline; 
+        }
+        
+        .btn-cta {
+            display: block;
+            margin: 40px auto;
+            padding: 16px 48px;
+            background: #2563eb; 
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            transition: background 0.2s, transform 0.1s;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            max-width: 320px;
+        }
+        .btn-cta:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        form { 
+            background: #f8fafc; 
+            padding: 35px; 
+            border-radius: 10px; 
+            border: 1px solid #e2e8f0; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #1e3a8a; 
+        }
+        input[type="text"], input[type="tel"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 22px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        .required-star { 
+            color: #ef4444; 
+            margin-left: 4px; 
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 24px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .highlight-box h3 {
+            margin-top: 0;
+        }
+        
+        .external-links ul { 
+            list-style-type: none; 
+            padding-left: 0; 
+        }
+        .external-links ul li { 
+            margin-bottom: 12px; 
+            padding-bottom: 8px; 
+            border-bottom: 1px solid #f1f5f9; 
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .tag {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        @media(max-width:768px) {
+            header, section, footer { 
+                margin: 15px; 
+                padding: 25px; 
+            }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.2rem; }
+            .btn-cta { width: 100%; padding: 14px 0; }
+            th, td { padding: 10px 8px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>20대 초반 자동차 보험료 비교 분석 및 실질적인 절약 방법</h1>
+        <p>대학생, 사회초년생 등 만 21세에서 만 24세 이하의 청년층이 첫차를 구입하거나 보험을 갱신할 때 직면하는 가장 큰 고민은 단연 보험료 부담입니다. 통계적으로 사고율이 가장 높은 구간인 20대 초반의 자동차 보험료가 왜 높게 산정되는지 그 원인을 체계적으로 분석하고, 개인이 직접 적용할 수 있는 다양한 특약과 가입 방식의 장단점을 명확하게 제시합니다.</p>
+        <a class="btn-cta" href="#contact-form">나에게 맞는 예상 보험료 비교하기</a>
+    </header>
+
+    <nav aria-label="네비게이션">
+        <header style="margin: 0; padding: 20px; box-shadow: none; background: #f8fafc;">
+            <p style="font-weight: 600; margin-bottom: 10px; color: #1e3a8a;">주요 안내 목차</p>
+            <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0;">
+                <li><a href="#average-cost">1. 연령별 평균 예상 가격</a></li>
+                <li><a href="#pro-con">2. 가입 방식별 장단점 비교</a></li>
+                <li><a href="#saving-methods">3. 실질적인 보험료 절약 요령</a></li>
+                <li><a href="#policy-2026">4. 2026년 보험 요율 및 제도 변화</a></li>
+                <li><a href="#community-opinion">5. 커뮤니티 실제 가입 후기 분석</a></li>
+                <li><a href="#digital-search">6. 현대적 채널 및 플랫폼의 활용</a></li>
+                <li><a href="#contact-form">7. 맞춤 분석 상담 신청</a></li>
+                <li><a href="#external-links">8. 신뢰할 수 있는 외부 정보</a></li>
+            </ul>
+        </header>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <section id="average-cost">
+        <h2>1. 20대 초반 연령별 평균 예상 가격 및 구조적 요인</h2>
+        <p>20대 초반 운전자가 자동차 등록 후 단독 명의로 보험을 가입할 때 마주하게 되는 견적 금액은 대략 연간 180만 원에서 많게는 300만 원 이상까지 달합니다. 이는 만 30세 이상의 숙련된 운전자가 납부하는 평균 요율과 비교하면 두 배에서 세 배에 달하는 높은 수준입니다. 보험 회사들이 청년 운전자의 요율을 이처럼 높게 산출하는 명확한 요인들을 분석합니다.</p>
+        
+        <h3>연령별 가입 경력 요율과 사고 발생 통계의 상관관계</h3>
+        <p>보험 개발원 및 금융 감독원의 통계에 따르면 만 21세 이하 및 만 24세 이하 운전자의 사고율은 전체 운전자 평균의 두 배 이상을 기록하고 있습니다. 특히 운전 미숙, 안전거리 미확보, 과속 등으로 인한 대형 대인 및 대물 사고의 비중이 높아 손해율 관리가 필수적인 보험사 입장에서는 높은 요율을 책정할 수밖에 없는 구조입니다.</p>
+        <p>기본적으로 개인의 자동차 보험 요율은 가입 경력, 사고 경력, 운전자 연령, 차량의 배기량 및 종류 등에 따라 차등 적용됩니다. 보험 신규 가입 시에는 가입 경력 요율이 최고 등급인 100퍼센트 이상으로 설정되므로, 할인 혜택을 거의 받지 못한 채 산출된 순수 보험료가 부과됩니다.</p>
+
+        <h3>연령 및 차종에 따른 가상 평균 견적 비교표</h3>
+        <p>아래 제시된 수치는 만 21세부터 만 24세 이하의 신규 가입자가 준중형 세단(배기량 1,600cc 미만) 및 소형 SUV를 구매했을 때를 가정하여 가상으로 구성한 데이터입니다. 실제 운전자의 거주 지역, 차량의 옵션, 세부 트림에 따라 변동될 수 있습니다.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>연령 구분 (만)</th>
+                    <th>차량 분류 (예시)</th>
+                    <th>단독 가입 예상 비용 (원)</th>
+                    <th>부모님 밑으로 가입시 (원)</th>
+                    <th>핵심 요인 분석</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>만 20세</td>
+                    <td>1,600cc 가솔린 세단</td>
+                    <td>2,600,000 ~ 3,200,000</td>
+                    <td>1,100,000 ~ 1,500,000</td>
+                    <td>사고 통계상 리스크가 가장 높은 단계로 수수료율이 가장 높음</td>
+                </tr>
+                <tr>
+                    <td>만 21세</td>
+                    <td>1,600cc 가솔린 세단</td>
+                    <td>2,200,000 ~ 2,700,000</td>
+                    <td>950,000 ~ 1,300,000</td>
+                    <td>만 21세 이상 한정 특약 적용이 가능해지며 가격이 소폭 하락</td>
+                </tr>
+                <tr>
+                    <td>만 22세</td>
+                    <td>소형 가솔린 SUV</td>
+                    <td>2,000,000 ~ 2,500,000</td>
+                    <td>900,000 ~ 1,200,000</td>
+                    <td>가입 경력 1년 추가 적용 시 요율 하락의 혜택 체감 가능</td>
+                </tr>
+                <tr>
+                    <td>만 23세</td>
+                    <td>소형 가솔린 SUV</td>
+                    <td>1,800,000 ~ 2,300,000</td>
+                    <td>850,000 ~ 1,150,000</td>
+                    <td>무사고 유지 조건 충족 시 추가적인 갱신 할인이 적용됨</td>
+                </tr>
+                <tr>
+                    <td>만 24세</td>
+                    <td>1,600cc 하이브리드 세단</td>
+                    <td>1,500,000 ~ 2,000,000</td>
+                    <td>750,000 ~ 1,050,000</td>
+                    <td>만 24세 이상 지정이 가능해지며 최초 가입 대비 큰 폭으로 절감</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.85rem; color: #64748b;">위 예상 수치는 일반적인 손해율 통계를 활용해 구성한 참고용 가상 통계이며, 개별 운전자의 이력과 보험사의 정책 변화에 따라 실제 지불할 금액은 다르게 계산될 수 있습니다.</p>
+    </section>
+
+    <section id="pro-con">
+        <h2>2. 가입 방식에 따른 차이점 및 장단점 분석</h2>
+        <p>20대 초반 청년들이 차를 마련하고 보험에 가입하는 방법은 크게 두 가지로 분류됩니다. 본인의 이름으로 가입을 진행하는 단독 명의 방식과, 부모님 소유의 차량 지분에 본인을 추가하여 가입하는 부모님 밑으로 공동명의 가입 방식이 있습니다. 이 두 유형의 장단점과 구체적인 비용 차이점을 확인하는 것이 합리적인 설계를 이끌어냅니다.</p>
+
+        <div class="highlight-box">
+            <h3>단독 명의 신규 가입의 장단점</h3>
+            <p><strong>장점:</strong> 가입 직후부터 본인의 이름으로 운전 경력과 할인등급이 직접 누적되기 시작합니다. 사고를 내지 않고 일정 기간을 유지하면 20대 중반 이후 보험료가 큰 폭으로 낮아지는 경험을 할 수 있으며, 부모님의 보험 사고 등급에 전혀 영향을 주지 않아 독립적인 관리가 가능합니다.</p>
+            <p><strong>단점:</strong> 최초 산정되는 기준 금액이 너무 비쌉니다. 사회초년생의 초기 한 달 급여에 준하는 수준의 목돈이 연간 지출 비용으로 발생하므로 가계 재정에 큰 부담이 될 수 있습니다.</p>
+        </div>
+
+        <div class="highlight-box" style="background: #f0fdf4; border-left-color: #22c55e;">
+            <h3>부모님 공동명의 및 1인 지정 추가 방식의 장단점</h3>
+            <p><strong>장점:</strong> 사고 이력이 없고 요율 등급이 우수한 부모님의 보험 경력을 그대로 빌려 쓸 수 있기 때문에 초기 비용을 절반 이하로 줄일 수 있습니다. 만 21세 이상 한정 특약이나 지정 1인 특약을 활용하여 등록하면 실질적으로 가장 저렴한 가격 수준을 보여줍니다.</p>
+            <p><strong>단점:</strong> 만약 20대 초반 자녀가 도로에서 운행 도중 사고를 발생시킬 경우, 부모님의 할인 및 할증 등급이 동반 하락하여 부모님이 소유한 다른 차량의 보험료까지 일제히 큰 폭으로 인상됩니다. 또한 자녀 본인의 단독 경력은 직접 인정받는 신청을 사전에 진행하지 않는 한 온전히 쌓이지 않게 된다는 단점이 있습니다.</p>
+        </div>
+    </section>
+
+    <section id="saving-methods">
+        <h2>3. 20대 초반을 위한 구체적이고 실질적인 보험료 절약 요령</h2>
+        <p>단순히 정해진 견적대로 납부하기보다 보험사에서 제공하는 숨겨진 옵션들과 정부 지원 및 경력 제도를 활용하면 수십만 원 이상의 실질적인 비용 절감이 가능합니다. 20대 초반 운전자가 즉시 활용할 수 있는 대표적인 팁을 상세히 공유합니다.</p>
+
+        <h3>운전경력인정 제도의 꼼꼼한 활용</h3>
+        <p>과거 군대에서 운전병으로 복무했던 이력이 있거나, 해외에서 현지 보험에 가입하여 운전한 경력이 있는 경우, 또는 부모님이 가입한 자동차보험에 종피보험자(경력 인정 대상자)로 등록되어 있었다면 해당 기간만큼 가입 경력을 소급 적용받을 수 있습니다. 경력 인정은 최대 3년까지 가능하며, 이 제도를 활용하는 것만으로도 최초 신규 등록 시 적용되는 불리한 요율의 상당 부분을 경감할 수 있습니다. 최근에는 카셰어링 업체에서 일정 시간 이상 무사고 주행을 기록한 데이터도 보험 경력으로 인정해 주는 추세이므로 해당 조건에 부합하는지 전문 업체를 통해 확인할 필요가 있습니다.</p>
+
+        <h3>안전운전 습관 점수 연동 특약 활용</h3>
+        <p>스마트폰의 모바일 내비게이션 어플리케이션(티맵, 카카오네비 등)과 연동하여 안전운전 점수를 획득하면 주행 거리에 무관하게 즉시 할인을 적용받는 특약입니다. 보통 직전 500킬로미터에서 1,000킬로미터 이상을 주행하면서 급가속, 급감속, 과속을 피하고 규정 속도를 준수하여 80점 내외의 점수를 기록하면 약 10퍼센트에서 많게는 15퍼센트까지 할인을 제공합니다. 이 특약은 20대 초반 가입자들에게 가격 부담을 낮출 수 있는 유용한 절감 수단으로 추천됩니다.</p>
+
+        <h3>마일리지 및 첨단 안전장치 등록</h3>
+        <p>연간 약정한 거리보다 적게 운행할 경우 만기 시 해당 비율만큼 보험료를 환급받는 마일리지 특약은 주행을 적게 하는 대학생들에게 가장 효과적입니다. 출퇴근 용도가 아닌 주말 여가용 차량이라면 주행거리가 짧을 가능성이 높으므로 반드시 가입해야 합니다. 아울러 차량에 장착된 차선 이탈 방지 장치, 전방 충돌 방지 보조 장치 및 블랙박스 사진을 정교하게 촬영해 보험사에 제출하면 각각의 할인율이 복리로 적용되어 최종 납부 금액이 크게 낮아집니다.</p>
+
+        <h3>자기차량손해 보장 범위의 합리적 조정</h3>
+        <p>중고차 가격이 저렴한 차량을 첫차로 구매한 경우라면 자기차량손해(자차보험) 담보를 가입할 때 자기부담금 비율을 높이거나, 차량가액이 매우 낮다면 자차 담보를 제외하는 과감한 판단을 하기도 합니다. 자차 담보를 포함할 때와 제외할 때 발생하는 최종 가격 차이를 확인하고 본인의 운전 실력과 차종의 가치에 따라 실리적인 결정을 내리는 것이 단기 비용 면에서 싼곳을 찾는 핵심 요령이 됩니다.</p>
+    </section>
+
+    <section id="policy-2026">
+        <h2>4. 2026년 기준 청년층 자동차 보험 요율 동향 및 제도 변화</h2>
+        <p>2026년에 들어서면서 자동차 보험 시장은 고령화 운전자의 증가와 인공지능 기반의 고도화된 정밀 분석 요율 도입으로 인해 청년 운전자들에게도 새로운 기준들을 적용하고 있습니다. 안전을 우선시하는 청년층에 대해 더 넓은 기회를 주려는 제도적 보완이 눈에 띕니다.</p>
+        
+        <h3>청년 친화형 운전 보장 제도 및 첨단 정보 기술의 결합</h3>
+        <p>기존에는 나이가 어리다는 이유만으로 천편일률적인 할증을 부과하였으나, 2026년부터는 챗지피티 및 제미나이 등 고도화된 인공지능 기술을 활용하여 운전자의 일상 주행 습관 빅데이터를 보험사가 더욱 입체적으로 분석합니다. 단순히 나이의 많고 적음이 아니라, 주중 심야 운행 횟수나 운전 경로의 안전성을 계량화하여 실제 리스크가 적은 20대 운전자에게는 파격적인 안전 할인 우대 혜택을 부여하기 시작했습니다.</p>
+        <p>또한 청년층의 구직 및 출퇴근 안정을 위해 국가 교통 부서와 주요 전문 금융 기관이 함께 운영하는 청년층 특화 지원 프로그램이 소폭 강화되었습니다. 이를 잘 파악해 두면 가입 시 정부가 보증하는 우대 요율을 찾아내는 기회가 될 수 있습니다.</p>
+    </section>
+
+    <section id="community-opinion">
+        <h2>5. 온라인 커뮤니티 실제 가입 후기 및 이용자 의견 분석</h2>
+        <p>국내의 대표적인 온라인 정보 공간인 보배드림, 디시인사이드 자동차 갤러리, 에펨코리아 및 펨코 등에서는 자동차 보험 가입 시 가장 현명했던 루트에 대한 무수한 내돈내산 가입 수기가 공유되고 있습니다. 이 안에서 오가는 대화들을 면밀히 검토해 보면 유용한 팁을 발견할 수 있습니다.</p>
+
+        <h3>실제 경험자들이 전하는 조언 요약</h3>
+        <ul>
+            <li><strong>비교 견적 사이트 활용:</strong> 대면 설계사 전화를 통하는 것보다 다이렉트 가입이 최소 15퍼센트 이상 저렴하므로 전 보험사 견적을 수집하는 작업은 필수적입니다.</li>
+            <li><strong>사은품 및 현금지원 혜택의 진실:</strong> 신규 가입 시 과도한 현금지원을 내세우는 정체불명의 업체는 불법 브로커이거나 불필요한 고액 보장을 유도할 수 있으므로 공식 다이렉트 사이트에서 제공하는 신용카드 제휴 할인이나 정형화된 상품권 지급 이벤트를 이용하는 편이 안전합니다.</li>
+            <li><strong>보장 한도의 현실적 설정:</strong> 도로 위의 고가 외제차가 많아진 환경을 고려할 때, 대물 배상은 최소 5억 원 이상, 가급적 10억 원으로 증액하는 것을 추천합니다. 한도를 올려도 실제로 내야 하는 차액은 몇천 원 수준에 불과하지만 사고 시의 안전장치는 대폭 두터워지기 때문입니다.</li>
+            <li><strong>자동차 상해 특약의 필수 선택:</strong> 자기신체사고 담보 대신 치료비와 부상 등급 외 위자료까지 지원해 주는 자동차 상해 특약을 넣는 것이 사고 시 치료를 충분히 받을 수 있는 최고의 대비책이라는 주장이 압도적인 추천을 받습니다.</li>
+        </ul>
+    </section>
+
+    <section id="digital-search">
+        <h2>6. 포털 검색 및 최신 AI 도구를 통한 능동적 비교 방법</h2>
+        <p>네이버와 구글 등 주요 포털 사이트에서 관련 키워드를 검색하면 넘쳐나는 광고성 글들 속에서 유익한 고급 정보를 선별해내는 능력이 필요합니다. 현대의 20대들은 유튜브나 인스타그램, 트위터, 페이스북과 같은 소셜 네트워크 서비스의 리얼한 짧은 후기 영상을 참고하기도 하며, 챗지피티와 제미나이 등 생성형 인공지능에 본인의 상황을 입력하여 맞춤형 설계 방향을 조언받고 있습니다.</p>
+
+        <div class="highlight-box">
+            <h3>생성형 AI 기술을 활용한 자가 견적 보조 방법</h3>
+            <p>이전처럼 설계사가 제안하는 항목에 전적으로 의존하기보다는, 다음과 같은 논리적인 방식을 통해 개인 스스로 기초 지식을 다진 후 보험사에 견적을 요청하는 것이 권장됩니다.</p>
+            <ol>
+                <li><strong>기초 정보 정의:</strong> 나의 나이(만 21세 등), 차량의 구체적인 연식 및 예상가액, 연간 주행 예상 거리를 미리 확인합니다.</li>
+                <li><strong>AI 대화 시뮬레이션:</strong> 인공지능 서비스에 가상으로 대물 한도 설정의 범위와 가족 한정 특약 적용 시의 차이점에 대해 미리 질문하여 대략적인 구성을 학습합니다.</li>
+                <li><strong>다이렉트 통합 사이트 검증:</strong> 정리된 주행 정보를 바탕으로 실제 대기업 손해보험사 다이렉트 페이지에 접속하여 정확한 법적 서류를 바탕으로 신규 청약 과정을 진행합니다.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="external-links">
+        <h2>7. 신뢰도가 검증된 법적 및 제도 관련 외부 자료 링크</h2>
+        <p>더 상세하고 객관적인 보험 공시 및 통계 수치를 탐색하고자 하는 가입자분들을 위해 국가 기관 및 공신력 있는 공식 기구의 유용한 웹 자원을 소개합니다. 아래 링크를 참조하여 정확한 요율 체계를 직접 탐독해 보실 수 있습니다.</p>
+        
+        <div class="external-links">
+            <ul>
+                <li><a href="https://www.nida.or.kr" target="_blank" rel="noopener">보험개발원 공식 포털</a>: 국내 손해보험 요율의 기준을 제시하는 곳으로 차량 등급별 통계 및 사고율 현황을 객관적으로 살펴볼 수 있습니다.</li>
+                <li><a href="https://www.fss.or.kr" target="_blank" rel="noopener">금융감독원 파인 서비스</a>: 금융 당국이 운영하는 포털로 전 보험 상품의 정밀 비교 및 소비자 권익 구제 절차와 약관 가이드를 통합 제공합니다.</li>
+                <li><a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" target="_blank" rel="noopener">나무위키 자동차보험 상세 백과</a>: 자동차 관련 각종 담보 내용과 특약의 법적 의미를 대중적인 언어로 쉽고 방대하게 서술하고 있습니다.</li>
+                <li><a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 자동차손해배상 보장법</a>: 무조건 알아야 하는 의무보험 한도와 대인 책임 한도 등에 대한 법률적 세부 조항을 찾아볼 수 있습니다.</li>
+                <li><a href="https://www.knia.or.kr" target="_blank" rel="noopener">손해보험협회 소비자공시실</a>: 협회가 정기적으로 취합하는 보험사별 민원 발생률과 보험금 지급 여력 비율을 공시하여 투명성을 제고하는 통로입니다.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact-form">
+        <h2>8. 개별 상황 분석 및 1:1 맞춤 예상 견적 안내 신청</h2>
+        <p>복잡하게 꼬여있는 나이 한정 조건이나 가족 결합의 유불리를 직접 계산하기 어려우시다면, 최신 2026년 요율표를 적용하는 분석 신청 양식을 활용하십시오. 전송해 주신 데이터를 바탕으로 어떤 방식이 가장 저렴하고 최적의 안전장치를 제공하는지 합리적인 방향을 설계하여 전송해 드립니다.</p>
+        
+        <form action="/submit-insurance-consultation" method="POST">
+            <div class="form-group">
+                <label for="user-name">가입 신청자 성명<span class="required-star">*</span></label>
+                <input type="text" id="user-name" name="user_name" required placeholder="예: 홍길동" />
+            </div>
+
+            <div class="form-group">
+                <label for="user-tel">연락처<span class="required-star">*</span></label>
+                <input type="tel" id="user-tel" name="user_tel" required placeholder="예: 010-0000-0000" pattern="[0-9\-]+" />
+            </div>
+
+            <div class="form-group">
+                <label for="driver-age-select">실제 운전자 만 나이<span class="required-star">*</span></label>
+                <select id="driver-age-select" name="driver_age_select" required>
+                    <option value="">나이 선택</option>
+                    <option value="20">만 20세 이하</option>
+                    <option value="21">만 21세</option>
+                    <option value="22">만 22세</option>
+                    <option value="23">만 23세</option>
+                    <option value="24">만 24세</option>
+                    <option value="25">만 25세 이상</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="car-type">구입 예정 또는 소유 차량 정보<span class="required-star">*</span></label>
+                <input type="text" id="car-type" name="car_type" required placeholder="예: 아반떼 CN7, 셀토스 2023년식 등" />
+            </div>
+
+            <div class="form-group">
+                <label for="ownership-type">구상 중인 명의 소유 형태<span class="required-star">*</span></label>
+                <select id="ownership-type" name="ownership_type" required>
+                    <option value="">소유 구조 선택</option>
+                    <option value="single">자녀 본인 단독 명의</option>
+                    <option value="joint">부모님 및 자녀 공동명의 (지분 분할)</option>
+                    <option value="parents">부모님 100퍼센트 명의 (자녀 지정 추가)</option>
+                    <option value="undecided">아직 결정하지 못함</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>적용 가능한 할인 우대 요건 (해당 사항 전부 선택)</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <label style="font-weight: normal; color: #4b5563;"><input type="checkbox" name="discount_military" value="Y" /> 군 운전병 보직 전역자</label>
+                    <label style="font-weight: normal; color: #4b5563;"><input type="checkbox" name="discount_sharing" value="Y" /> 카셰어링 장기 무사고 이력</label>
+                    <label style="font-weight: normal; color: #4b5563;"><input type="checkbox" name="discount_tmap" value="Y" /> T맵 등 안전운전 점수 80점 이상</label>
+                    <label style="font-weight: normal; color: #4b5563;"><input type="checkbox" name="discount_adas" value="Y" /> 차량에 ADAS 첨단 안전센서 장착</label>
+                    <label style="font-weight: normal; color: #4b5563;"><input type="checkbox" name="discount_mileage" value="Y" /> 연간 예상 주행 10,000km 이하</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message-detail">그 외 궁금한 상세 내역 (희망 대물 한도, 현재 보유 예산 등)</label>
+                <textarea id="message-detail" name="message_detail" rows="6" placeholder="예시: 현재 부모님 밑으로 들어가는 것과 단독 가입 중 어떤 방향이 세금과 수수료 측면에서 훨씬 가성비가 높을지 추천받고 싶습니다. 자차 제외 여부도 고민 중입니다."></textarea>
+            </div>
+
+            <button type="submit" class="btn-cta">전 보험사 비교 견적 분석 결과 확인</button>
+        </form>
+    </section>
+
+  
